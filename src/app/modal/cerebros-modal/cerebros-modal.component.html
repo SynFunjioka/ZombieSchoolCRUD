@@ -1,0 +1,32 @@
+
+<div class="modal fade" id="modalCerebro" #modalCerebro tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar cerebro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="position-relative form-group"><label for="tipo" class="">Sabor</label><select [(ngModel)]="sabor" name="tipo" id="tipo" class="form-control form-control-sm">
+                    <option> Spicy</option>
+                    <option>Sweet</option>
+                    <option>Bitter</option>
+                    <option>Salty</option>
+
+                </select></div>
+                <div class="position-relative form-group"><label for="description" class="">Descripcion</label><input [(ngModel)]="descripcion" name="description" id="description" placeholder="Descripción" type="text" class="form-control form-control-sm"></div>
+                <div class="position-relative form-group"><label for="iq" class="">IQ</label><input [(ngModel)]="iq" name="iq" id="iq" placeholder="IQ" type="number" class="form-control form-control-sm"></div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="guardarCerebro()">Guardar zombie  </button>
+            </div>
+            <div class="card card-shadow-warning">
+                <div class="card-body" id="ErrorMessageCerebro" style="color: red;"></div>
+            </div>
+        </div>  
+    </div>
+</div>
