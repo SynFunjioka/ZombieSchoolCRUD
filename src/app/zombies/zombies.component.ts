@@ -16,12 +16,14 @@ export class ZombiesComponent implements OnInit {
   nombre: string ;
   email: string ;
   tipo: string ;
+  owner: string;
   zombies: any;
   id: string;
   zombieInfo: any;
   constructor(private _dataService: DataService,  private _appComp: AppComponent, private _router: Router, private _rendered: Renderer2) { }
 
   ngOnInit(): void {
+    this.owner = localStorage.getItem('us');
     if (!localStorage.getItem('loged')) {
       this._router.navigate(['login']);
     }
@@ -34,14 +36,14 @@ export class ZombiesComponent implements OnInit {
     this._dataService.zombieObservable.subscribe((resultados) => {
       this.zombies = resultados;
     });
-    this._dataService.obtenerZombies();
+    this._dataService.obtenerZombies(this.owner);
   }
 
  DeleteZombie(id: string) {
    console.log(this.email);
    return this._dataService.eliminarZombie(id).subscribe((resultado) => {
     console.log(resultado);
-    this._dataService.obtenerZombies();
+    this._dataService.obtenerZombies(this.owner);
     }, (error) => {
       console.log(error);
       document.getElementById('ErrorMessageZombie').innerHTML = error.error.mensajeError.toString();

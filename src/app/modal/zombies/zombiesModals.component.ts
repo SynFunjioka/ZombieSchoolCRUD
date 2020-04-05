@@ -12,18 +12,19 @@ export class ZombiesModalsComponent implements OnInit {
   nombre: string;
   email: string;
   tipo: string;
+  owner: string;
   constructor(private _dataService: DataService, private _rendered: Renderer2) { }
 
   ngOnInit(): void {
-
+    this.owner = localStorage.getItem('us');
   }
   guardarZombie() {
     console.log(this.nombre, this.email, this.tipo);
-    this._dataService.agregarZombie(this.nombre, this.email, this.tipo).subscribe((resultado) => {
+    this._dataService.agregarZombie(this.nombre, this.email, this.tipo, this.owner).subscribe((resultado) => {
       console.log(resultado);
       this._rendered.selectRootElement(
         this.modal.nativeElement, true).click();
-      this._dataService.obtenerZombies();
+      this._dataService.obtenerZombies(this.owner);
       this.nombre = ' ';
       this.email = ' ';
       this.tipo = ' ';

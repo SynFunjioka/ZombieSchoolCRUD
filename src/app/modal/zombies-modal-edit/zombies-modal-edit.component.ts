@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 
+
 @Component({
   selector: 'app-zombies-modal-edit',
   templateUrl: './zombies-modal-edit.component.html',
@@ -21,6 +22,7 @@ export class ZombiesModalEditComponent implements OnInit {
   }
 
   EditarZombie() {
+    let us = localStorage.getItem('us')
     this.id = document.getElementById('_id').value;
     this.nombre = document.getElementById('nombreE').value;
     this.email = document.getElementById('emailE').value;
@@ -32,7 +34,7 @@ export class ZombiesModalEditComponent implements OnInit {
       console.log(resultado);
       this._rendered.selectRootElement(
         this.modal.nativeElement, true).click();
-      this._dataService.obtenerZombies();
+      this._dataService.obtenerZombies(us);
       this.nombre = ' ';
       this.email = ' ';
       this.tipo = ' ';

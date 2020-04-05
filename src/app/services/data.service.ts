@@ -17,8 +17,8 @@ export class DataService {
 
   constructor(private _client: HttpClient) { }
 
-async obtenerZombies() {
-  let zombies = await this._client.get<any>(apiUrl + 'zombies');
+async obtenerZombies(user: string) {
+  let zombies = await this._client.get<any>(apiUrl + 'zombies/' + user);
   console.log(zombies);
   return this.updateZombies$.next(zombies);
 }
@@ -29,11 +29,12 @@ async obtenerZombieData(id: string) {
   return zombie;
 }
 
-agregarZombie(nombre: string, correo: string, tipo: string) {
+agregarZombie(nombre: string, correo: string, tipo: string, propietario: string) {
   let nuevoZombie = {
     name: nombre,
     email: correo,
-    type: tipo
+    type: tipo,
+    owner: propietario
   };
   return this._client.post(apiUrl + 'zombies/new', nuevoZombie);
 }
@@ -53,17 +54,18 @@ eliminarZombie(id) {
 }
 
 //_____________________________________________________________________ CEREBRO
-async obtenerCerebros() {
-  let cerebros = await this._client.get<any>(apiUrl + 'cerebros');
+async obtenerCerebros(user: string) {
+  let cerebros = await this._client.get<any>(apiUrl + 'cerebros/' + user);
   console.log(cerebros);
   return this.updateCerebros$.next(cerebros);
 }
 
-agregarCerebro(sabor: string, iq: number, descripcion: string) {
+agregarCerebro(sabor: string, iq: number, descripcion: string, propietario:string) {
   let nuevoCerebro = {
     flavor: sabor,
     IQ: iq,
-    Description: descripcion
+    Description: descripcion,
+    owner: propietario
   };
   return this._client.post(apiUrl + 'cerebro/new', nuevoCerebro);
 }

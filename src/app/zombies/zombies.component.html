@@ -6,6 +6,7 @@
             <th>Nombre</th>
             <th>Correo</th>
             <th>Tipo</th>
+            <th>Propietario</th>
             <th>Opciones</th>
             
         </tr>
@@ -16,6 +17,7 @@
             <td>{{ zombie.name }}</td>
             <td>{{ zombie.email }}</td>
             <td>{{ zombie.type }}</td>
+            <td>{{ zombie.owner}}</td>
             <td>
                 <button (click)="DeleteZombie(zombie._id)"><i class="fas fa-trash"></i></button>
                 <button (click)="DatosZombie(zombie._id, zombie.name, zombie.email, zombie.type)"  data-toggle="modal" data-target="#modalEdit"><i class="fas fa-eraser"></i></button>

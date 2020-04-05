@@ -12,18 +12,20 @@ sabor: string;
 iq: number;
 descripcion: string;
 imagen: string;
+owner: string;
   constructor(private _dataService: DataService, private _rendered: Renderer2) { }
 
   ngOnInit(): void {
+    this.owner = localStorage.getItem('us');
 
   }
   guardarCerebro() {
     console.log(this.modal);
-    this._dataService.agregarCerebro(this.sabor, this.iq, this.descripcion).subscribe((resultado) => {
+    this._dataService.agregarCerebro(this.sabor, this.iq, this.descripcion, this.owner).subscribe((resultado) => {
       console.log(resultado);
       this._rendered.selectRootElement(
         this.modal.nativeElement, true).click();
-      this._dataService.obtenerCerebros();
+      this._dataService.obtenerCerebros(this.owner);
       this.sabor = ' ';
       this.iq = null;
       this.descripcion = ' ';

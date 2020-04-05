@@ -23,9 +23,9 @@ export class LoginComponent implements OnInit {
   login() {
     this._authSer.authUser(this.email, this.password).subscribe((resultado) => {
       console.log(resultado);
-      this._appComp.loged = true;
       this._router.navigate(['dashboard']);
       localStorage.setItem('loged', 'true');
+      localStorage.setItem('us', this.email);
     }, (error) => {
       console.log(error);
       document.getElementById('ErrorMessageLogin').innerHTML = error.error.errors.toString();

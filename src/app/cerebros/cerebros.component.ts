@@ -15,12 +15,14 @@ export class CerebrosComponent implements OnInit {
   descripcion: string;
   iq: number;
   imagen: string;
+  owner: string;
   id: string;
   cerebros: any;
 
   constructor(private _dataService: DataService,  private _appComp: AppComponent, private _router: Router) { }
 
   ngOnInit(): void {
+    this.owner = localStorage.getItem('us');
     if (!localStorage.getItem('loged')) {
       this._router.navigate(['login']);
     }
@@ -34,13 +36,14 @@ export class CerebrosComponent implements OnInit {
     this._dataService.eliminarCerebro(id).subscribe((resultado) => {
       console.log(resultado);
     });
+    this._dataService.obtenerCerebros(this.owner);
    }
 
    ActualizarTabla() {
     this._dataService.cerebroObservable.subscribe((resultados) => {
       this.cerebros = resultados;
     });
-    this._dataService.obtenerCerebros();
+    this._dataService.obtenerCerebros(this.owner);
   }
 
 }
