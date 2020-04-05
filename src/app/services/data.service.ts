@@ -73,6 +73,14 @@ agregarCerebro(sabor: string, iq: number, descripcion: string, propietario:strin
 eliminarCerebro(id) {
   return this._client.delete(apiUrl + 'cerebros/delete/' + id);
 }
+
+
+
+
+contarSabores(owner){
+  let sabores = this._client.get<any>(apiUrl + 'cerebrosChart/' + owner);
+  return sabores;
+}
 }
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 //import * as CanvasJS from '../assets/canvasjs.min';
 
 //var CanvasJS = require('src/assets/js/canvasjs.min');
@@ -10,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+    owner: string;
+  constructor(private _dataService: DataService) { }
 
   ngOnInit() {
+    this.owner = localStorage.getItem('us');
+    this.contarCerebrosF(this.owner);
     /*let chart = new CanvasJS.Chart('gFlavor', {
       animationEnabled: true,
       exportEnabled: true,
@@ -41,6 +45,12 @@ export class DashboardComponent implements OnInit {
     chart.render();*/
     }
 
+    contarCerebrosF(owner: string){
+      this._dataService.contarSabores(owner).subscribe((resultado) => {
+      console.log(resultado);
+    }, (error) => {
+    });
+  }
 }
 
 
