@@ -15,6 +15,9 @@ export class DataService {
   private updateCerebros$ = new Subject<any>();
   cerebroObservable = this.updateCerebros$.asObservable();
 
+  /*private  getFlavors$ = new Subject<any>();
+  saborObservable = this.getFlavors$.asObservable();*/
+
   constructor(private _client: HttpClient) { }
 
 async obtenerZombies(user: string) {
@@ -75,11 +78,14 @@ eliminarCerebro(id) {
 }
 
 
-
-
-contarSabores(owner){
+contarSabores(owner) {
   let sabores = this._client.get<any>(apiUrl + 'cerebrosChart/' + owner);
   return sabores;
+}
+
+contarUsuariosCerebros() {
+  let usuariosR = this._client.get<any>(apiUrl + 'usuarioChart');
+  return usuariosR;
 }
 }
 

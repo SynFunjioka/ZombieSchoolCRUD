@@ -23,6 +23,7 @@ import { ZombiesModalsComponent } from './modal/zombies/zombiesModals.component'
 import { CerebrosModalComponent } from './modal/cerebros-modal/cerebros-modal.component';
 import { ZombiesModalEditComponent } from './modal/zombies-modal-edit/zombies-modal-edit.component';
 import { AuthService } from './services/auth.service';
+import { PedidosCerebrosComponent } from './cerebros/pedidos-cerebros/pedidos-cerebros.component';
 
 
 
@@ -44,6 +45,7 @@ import { AuthService } from './services/auth.service';
     CerebrosComponent,
     CerebrosModalComponent,
     ZombiesModalEditComponent,
+    PedidosCerebrosComponent,
 
   ],
   imports: [
@@ -54,6 +56,7 @@ import { AuthService } from './services/auth.service';
     HttpClientModule
   ],
   providers: [SettingsService, AuthService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

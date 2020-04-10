@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-//import * as CanvasJS from '../assets/canvasjs.min';
+import * as CanvasJS from 'src/assets/js/canvasjs.min';
 
 //var CanvasJS = require('src/assets/js/canvasjs.min');
 
@@ -10,47 +10,94 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
-
+    sabores: any;
     owner: string;
+    usuariosRegistrados: any;
   constructor(private _dataService: DataService) { }
 
   ngOnInit() {
     this.owner = localStorage.getItem('us');
     this.contarCerebrosF(this.owner);
-    /*let chart = new CanvasJS.Chart('gFlavor', {
+    this.contarUsuarios();
+
+    }
+
+    async contarCerebrosF(owner: string) {
+      await this._dataService.contarSabores(owner).subscribe((resultado) => {
+       console.log(resultado);
+
+       // Empezar a graficar
+       let chart = new CanvasJS.Chart('gFlavor', {
+        animationEnabled: true,
+        exportEnabled: true,
+        theme: 'light3',
+        title: {
+          text: 'Cantidad de cerebros por sabor'
+        },
+        data: [{
+          type: 'column',
+          indexLabelFontColor: '#5A5757',
+          indexLabelPlacement: 'outside',
+          dataPoints: [
+            { y: resultado.cSpicy, label: 'Spicy' },
+            { y: resultado.cSweet, label: 'Sweet' },
+            { y: resultado.cBitter, label: 'Bitter' },
+            { y: resultado.cSalty, label: 'Salty' }
+          ]
+        }]
+      });
+       chart.render();
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+
+
+  contarUsuarios() {
+    this._dataService.contarUsuariosCerebros().subscribe((resultado) => {
+     console.log(resultado);
+
+    // Empezar a graficar
+     let chart = new CanvasJS.Chart('gUserBrains', {
       animationEnabled: true,
       exportEnabled: true,
-      theme: 'light2',
+      theme: 'light3',
       title: {
-        text: 'Basic Column Chart in Angular'
+        text: 'Cantidad de cerebros por usuario'
       },
       data: [{
         type: 'column',
         indexLabelFontColor: '#5A5757',
         indexLabelPlacement: 'outside',
-        dataPoints: [
-          { y: 71, label: 'Apple' },
-          { y: 55, label: 'Mango' },
-          { y: 50, label: 'Orange' },
-          { y: 65, label: 'Banana' },
-          { y: 95, label: 'Pineapple"'},
-          { y: 68, label: 'Pears' },
-          { y: 28, label: 'Grapes'},
-          { y: 34, label: 'Lychee' },
-          { y: 14, label: 'Jackfruit' }
-        ]
+        dataPoints: resultado
       }]
     });
 
-    chart.render();*/
-    }
-
-    contarCerebrosF(owner: string){
-      this._dataService.contarSabores(owner).subscribe((resultado) => {
-      console.log(resultado);
-    }, (error) => {
+     chart.render();
     });
   }
+
+  
+    
+  
+
+
+  // addData(data) {
+  //   // tslint:disable-next-line: prefer-for-of
+  // for (let i = 0; i < data.length; i++) {
+  //   console.log(data);
+  //   data.push({
+  //     x: new Date(data[i].email),
+  //     y: data[i].email
+  //   });
+  // }
+
+  // }
+
+
+
+
 }
 
 

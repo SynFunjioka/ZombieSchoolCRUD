@@ -5,6 +5,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { RegistroComponent } from './registro/registro.component';
 import { ZombiesComponent } from './zombies/zombies.component';
 import { CerebrosComponent } from './cerebros/cerebros.component';
+import { PedidosCerebrosComponent } from './cerebros/pedidos-cerebros/pedidos-cerebros.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'registro', component: RegistroComponent },
     { path: 'zombies', component: ZombiesComponent },
     { path: 'cerebros', component: CerebrosComponent },
+    { path: 'pedidos/cerebros', component: PedidosCerebrosComponent},
     { path: '**', component: NopagefoundComponent}
 ];
 

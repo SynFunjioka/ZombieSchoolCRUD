@@ -58,8 +58,6 @@ export class ZombiesComponent implements OnInit {
     document.getElementById('nombreE').value = nombre;
     document.getElementById('emailE').value = email;
     document.getElementById('tipoE').value = tipo;
-
-   
   }
 
  }
