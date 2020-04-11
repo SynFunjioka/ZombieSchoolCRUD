@@ -15,6 +15,9 @@ export class DataService {
   private updateCerebros$ = new Subject<any>();
   cerebroObservable = this.updateCerebros$.asObservable();
 
+  private updatePedidosCerebros$ = new Subject<any>();
+  pedidoCerebroObservable = this.updatePedidosCerebros$.asObservable();
+
   /*private  getFlavors$ = new Subject<any>();
   saborObservable = this.getFlavors$.asObservable();*/
 
@@ -87,6 +90,29 @@ contarUsuariosCerebros() {
   let usuariosR = this._client.get<any>(apiUrl + 'usuarioChart');
   return usuariosR;
 }
+
+
+//__________________________________________________________________________________PEDIDOS
+
+guardarPedido(cerebroPedido: string, cantidad: number, usuario: string, metodoEnvio: string, fechaPedido: string, fechaEntrega: string ) {
+  let nuevoPedido = {
+    cerebro: cerebroPedido,
+    cantidadCerebros: cantidad,
+    emailUsuario: usuario,
+    envio: metodoEnvio,
+    fPedido: fechaPedido,
+    fEntrega: fechaEntrega
+  };
+  return this._client.post(apiUrl + 'pedidos/cerebros/new', nuevoPedido);
 }
+
+async obtenerInfoPedidos(user: string){
+  let infoPedidos = await this._client.get<any>(apiUrl + 'pedidos/cerebros/' + user);
+  console.log(infoPedidos);
+  return this.updatePedidosCerebros$.next(infoPedidos);
+}
+}
+
+
 
 

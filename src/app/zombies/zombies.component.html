@@ -12,7 +12,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr #zombieTable *ngFor="let zombie of zombies | async; let i = index">
+        <tr *ngFor="let zombie of zombies | async; let i = index">
             <th scope="row"> {{ i+1 }} </th>
             <td>{{ zombie.name }}</td>
             <td>{{ zombie.email }}</td>

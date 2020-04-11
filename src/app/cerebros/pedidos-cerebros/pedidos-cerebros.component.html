@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col-md-6">
-        <div class="main-card mb-3 card">
+    <div class="col-md-4">
+        <div #pedidosCerebrosTable class="main-card mb-3 card">
             <div class="card-body"><h5 class="card-title">Ordenar cerebro</h5>
                 <form class="">                                                                            
                     <div class="position-relative form-group">
@@ -17,20 +17,48 @@
                     <fieldset class="position-relative form-group">
                         <div class="position-relative form-check">
                             <label class="form-check-label">
-                                <input [(ngModel)]="typeOrder" name="radio1" type="radio" class="form-check-input" value="0">Bronce</label>
+                                <input [(ngModel)]="typeOrder"  name="typeOrderInput" type="radio" class="form-check-input" value=0>Bronce</label>
                         </div>
                         <div class="position-relative form-check">
                             <label class="form-check-label">
-                                <input [(ngModel)]="typeOrder" name="radio1" type="radio" class="form-check-input" value="1">Silver</label>
+                                <input [(ngModel)]="typeOrder"  name="typeOrderInput" type="radio" class="form-check-input" value=1>Silver</label>
                         </div>
                         <div class="position-relative form-check">
                             <label class="form-check-label">
-                                <input [(ngModel)]="typeOrder" name="radio1" type="radio" class="form-check-input" value="2">Gold</label>
+                                <input [(ngModel)]="typeOrder"  name="typeOrderInput" type="radio" class="form-check-input" value=2>Gold</label>
                         </div>
                     </fieldset>
-                    <button class="mt-1 btn btn-primary" (click)="realizarPedido()">Submit</button>
+                    
+                    <button class="mt-1 btn btn-primary" (click)="realizarPedido()">Pedir cerebro</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        <p>Órdenes realizadas</p>
+        <table class="mb-0 table table-dark">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Cerebro</th>
+                <th>Cantidad</th>
+                <th>Fecha de orden</th>
+                <th>Fecha entrega</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of dataPedidos | async; let i = index">
+                <th scope="row"> {{ i+1 }} </th>
+                <td>{{data.cerebro}}<td>
+                <td>{{data.cantidad}}<td>
+                <td>{{data.fechaPedido}}<td>
+                <td>{{data.fechaEntrega}}<td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--(click)="mostrarFechaEntrega()"-->

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
+import { Router } from '@angular/router';
 import * as CanvasJS from 'src/assets/js/canvasjs.min';
 
 //var CanvasJS = require('src/assets/js/canvasjs.min');
@@ -13,10 +14,14 @@ export class DashboardComponent implements OnInit {
     sabores: any;
     owner: string;
     usuariosRegistrados: any;
-  constructor(private _dataService: DataService) { }
+  constructor(private _dataService: DataService, private _router: Router) { }
 
   ngOnInit() {
     this.owner = localStorage.getItem('us');
+    if (!localStorage.getItem('loged')) {
+      this._router.navigate(['login']);
+    }
+
     this.contarCerebrosF(this.owner);
     this.contarUsuarios();
 
