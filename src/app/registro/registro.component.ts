@@ -11,6 +11,7 @@ export class RegistroComponent implements OnInit {
 
   email: string;
   password: string;
+  type: string;
   usuario: any;
   constructor(private _authService: AuthService, private _router: Router) { }
 
@@ -18,8 +19,8 @@ export class RegistroComponent implements OnInit {
   }
 
   crearCuenta() {
-    console.log(this.email, this.password);
-    this._authService.guardarUsuario(this.email, this.password).subscribe((resultado) => {
+    console.log(this.email, this.password, this.type);
+    this._authService.guardarUsuario(this.email, this.password, this.type).subscribe((resultado) => {
       console.log(resultado);
       this._router.navigate(['login']);
     }, (error) => {

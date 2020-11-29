@@ -18,12 +18,13 @@ export class AuthService {
     'Access-Control-Allow-Origin': '*'
   });
 
-  guardarUsuario(correo: string, contrasenia: string) {
+  guardarUsuario(correo: string, contrasenia: string, type: string) {
     let nuevoUsuario = {
       email: correo,
-      password: contrasenia
+      password: contrasenia,
+      typeA: type
     };
-    return this._http.post(apiUrl + 'registro/new', nuevoUsuario, {headers: this.headers}).pipe(map(data => data));
+    return this._http.post(apiUrl + 'registro', nuevoUsuario);
   }
 
   authUser(correo: string, contrasenia: string) {
