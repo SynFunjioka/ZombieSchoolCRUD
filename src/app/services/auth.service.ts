@@ -13,8 +13,9 @@ let apiUrl = environment.apiUrl;
 export class AuthService {
   constructor(private _http: HttpClient) { }
 
-  headers: HttpHeaders = new HttpHeaders({
-    'Content-Type' : 'application/json'
+    headers: HttpHeaders = new HttpHeaders({
+    'Content-Type' : 'application/json',
+    'Access-Control-Allow-Origin': '*'
   });
 
   guardarUsuario(correo: string, contrasenia: string) {
@@ -28,9 +29,10 @@ export class AuthService {
   authUser(correo: string, contrasenia: string) {
     const usuario = {
       email: correo,
-      password: contrasenia}
-      ;
-    return this._http.post(apiUrl + 'usuario/login', usuario);
+      password: contrasenia,
+      typeA: ''
+    };
+    return this._http.get(apiUrl + 'usuario/' + correo, usuario);
   }
 
 }

@@ -24,7 +24,7 @@ export class RegistroComponent implements OnInit {
       this._router.navigate(['login']);
     }, (error) => {
       console.log(error);
-      document.getElementById('ErrorMessageRegistro').innerHTML = error.error.mensajeError.toString();
+      document.getElementById('ErrorMessageRegistro').innerHTML = error.message.toString();
       // document.getElementById('ErrorMessageZombie').innerHTML = error.error.mensajeError.toString();
     });
   }

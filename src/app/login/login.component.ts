@@ -23,12 +23,18 @@ export class LoginComponent implements OnInit {
   login() {
     this._authSer.authUser(this.email, this.password).subscribe((resultado) => {
       console.log(resultado);
-      this._router.navigate(['dashboard']);
-      localStorage.setItem('loged', 'true');
-      localStorage.setItem('us', this.email);
+
+      if(this.password == resultado.body.Item.password) {
+        this._router.navigate(['dashboard']);
+        localStorage.setItem('loged', 'true');
+        localStorage.setItem('us', this.email);
+      }else{
+        document.getElementById('ErrorMessageLogin').innerHTML = 'Incorrect inputs';
+      }
+
     }, (error) => {
       console.log(error);
-      document.getElementById('ErrorMessageLogin').innerHTML = error.error.errors.toString();
+      document.getElementById('ErrorMessageLogin').innerHTML = error.message.toString();
     });
   }
 

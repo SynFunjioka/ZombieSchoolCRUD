@@ -9,6 +9,13 @@
                             <input [(ngModel)]="email" name="email" id="email" placeholder="something@idk.com" type="email" class="form-control">
                         </div>
                         <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group row">
+                            <label for="tipo" class="">Tipo</label>
+                            <select  [(ngModel)]="type" name="tipo" id="tipoE" placeholder="" class="form-control form-control-sm">
+                                <option value="normal">normal</option>
+                                <option value="plus">plus</option>
+                            </select>
+                        </div>
+                        <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group row">
                             <label for="password" class="mr-sm-2">Password</label>
                             <input [(ngModel)]="password" name="password" id="password" placeholder="Password" type="password"class="form-control">
                         </div>     
