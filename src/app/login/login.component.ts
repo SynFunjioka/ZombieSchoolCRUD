@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this._authSer.authUser(this.email, this.password).subscribe((resultado) => {
-      console.log(resultado);
+    this._authSer.authUser(this.email).subscribe((resultado) => {
+      console.log('login ►', resultado);
 
       if(this.password == resultado.body.Item.password) {
         this._router.navigate(['dashboard']);

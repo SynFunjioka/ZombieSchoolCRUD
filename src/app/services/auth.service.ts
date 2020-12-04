@@ -27,13 +27,21 @@ export class AuthService {
     return this._http.post(apiUrl + 'registro', nuevoUsuario);
   }
 
-  authUser(correo: string, contrasenia: string) {
-    const usuario = {
-      email: correo,
-      password: contrasenia,
-      typeA: ''
-    };
-    return this._http.get(apiUrl + 'usuario/' + correo, usuario);
+  authUser(correo: string) {
+    let usuario = this._http.get(apiUrl + 'usuario/' + correo);
+    return usuario;
   }
 
+  changeUserData(email: string, password: string, typeA: string) {
+    let userData = {
+      email: email,
+      password: password,
+      typeA: typeA
+    };
+    return this._http.put(apiUrl + 'usuario/' + email, userData );
+  }
+
+  deletUser(email){
+    return this._http.delete(apiUrl + 'usuario/' + email);
+  }
 }

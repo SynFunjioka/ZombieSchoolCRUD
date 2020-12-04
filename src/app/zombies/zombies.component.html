@@ -3,21 +3,19 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Tipo</th>
-            <th>Propietario</th>
-            <th>Opciones</th>
-            
+            <th>ID_Zombie</th>
+            <th>Owner</th>
+            <th>Type</th>
+            <th>Zombie name</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let zombie of zombies | async; let i = index">
             <th scope="row"> {{ i+1 }} </th>
-            <td>{{ zombie.name }}</td>
-            <td>{{ zombie.email }}</td>
+            <td>{{ zombie.id }}</td>
+            <td>{{ zombie.owner }}</td>
             <td>{{ zombie.type }}</td>
-            <td>{{ zombie.owner}}</td>
+            <td>{{ zombie.zombieName}}</td>
             <td>
                 <button (click)="DeleteZombie(zombie._id)"><i class="fas fa-trash"></i></button>
                 <button (click)="DatosZombie(zombie._id, zombie.name, zombie.email, zombie.type)"  data-toggle="modal" data-target="#modalEdit"><i class="fas fa-eraser"></i></button>

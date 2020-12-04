@@ -24,6 +24,7 @@ import { CerebrosModalComponent } from './modal/cerebros-modal/cerebros-modal.co
 import { ZombiesModalEditComponent } from './modal/zombies-modal-edit/zombies-modal-edit.component';
 import { AuthService } from './services/auth.service';
 import { PedidosCerebrosComponent } from './cerebros/pedidos-cerebros/pedidos-cerebros.component';
+import { UserEditComponent } from './src/app/modal/user-edit/user-edit.component';
 
 
 
@@ -46,6 +47,7 @@ import { PedidosCerebrosComponent } from './cerebros/pedidos-cerebros/pedidos-ce
     CerebrosModalComponent,
     ZombiesModalEditComponent,
     PedidosCerebrosComponent,
+    UserEditComponent,
 
   ],
   imports: [

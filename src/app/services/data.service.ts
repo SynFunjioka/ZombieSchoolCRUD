@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
+import { Zombie } from '../src/app/shared/Models/zombie';
 
 let apiUrl = environment.apiUrl;
 
@@ -23,9 +24,19 @@ export class DataService {
 
   constructor(private _client: HttpClient) { }
 
-async obtenerZombies(user: string) {
-  let zombies = await this._client.get<any>(apiUrl + 'zombies/' + user);
-  console.log(zombies);
+  headers: HttpHeaders = new HttpHeaders({
+    'Content-Type' : 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  });
+
+  listarZombies(): Observable<Zombie> {
+      let zombies = this._client.get<Zombie>('https://6n8c0mdx65.execute-api.us-east-2.amazonaws.com/dev/zombies');
+      console.log('listarZombies ►', zombies);
+      return zombies;
+  }
+async obtenerZombies() {
+  let zombies = await this._client.get(apiUrl + 'zombies');
+  console.log('dataService ► obtenerZombies', zombies);
   return this.updateZombies$.next(zombies);
 }
 

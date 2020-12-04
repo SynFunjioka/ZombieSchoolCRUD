@@ -30,7 +30,7 @@ export class ZombiesModalsComponent implements OnInit {
       this.tipo = ' ';
     }, (error) => {
       console.log(error);
-      document.getElementById('ErrorMessageZombie').innerHTML = error.error.mensajeError.toString();
+      document.getElementById('ErrorMessageZombie').innerHTML = error.message.toString();
     }
     );
   }
